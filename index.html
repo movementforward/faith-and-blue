@@ -612,6 +612,7 @@
                         for="full-name"
                         >Full Name</label
                       ><input
+                        name="full-name"
                         type="text"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                         placeholder="Full Name"
@@ -624,6 +625,7 @@
                         for="email"
                         >Email</label
                       ><input
+                        name="email"
                         type="email"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
                         placeholder="Email"
@@ -633,83 +635,89 @@
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="email"
+                        for="congregation-name"
                         >Congregation Name</label
                       ><input
-                        type="email"
+                        name="congregation-name"
+                        type="text"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                        placeholder="Email"
+                        placeholder="Congregation Name"
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>                    
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="email"
+                        for="event-name"
                         >Event Name</label
                       ><input
-                        type="email"
+                        name="event-name"
+                        type="text"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                        placeholder="Email"
+                        placeholder="Event Name"
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>                  
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="email"
+                        for="event-location-name"
                         >Event Location Name</label
                       ><input
-                        type="email"
+                        name="event-location-name"
+                        type="text"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                        placeholder="Email"
+                        placeholder="Event Location Name"
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="email"
+                        for="event-address"
                         >Event Address</label
                       ><input
-                        type="email"
+                        name="event-address"
+                        type="text"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                        placeholder="Email"
+                        placeholder="Event Address"
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="email"
+                        for="event-start"
                         >Event Start</label
                       ><input
-                        name="email"
-                        type="email"
-                        id="email"
+                        name="event-start"
+                        type="text"
+                        id="event-start"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                        placeholder="Email"
+                        placeholder="Event start"
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="email"
+                        for="event-end"
                         >Event End</label
                       ><input
-                        type="email"
+                        name="event-end"
+                        type="text"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
-                        placeholder="Email"
+                        placeholder="Event end"
                         style="transition: all 0.15s ease 0s;"
                       />
                     </div>
                     <div class="relative w-full mb-3">
                       <label
                         class="block uppercase text-gray-700 text-xs font-bold mb-2"
-                        for="message"
+                        for="description"
                         >Description</label
                       ><textarea
+                        name="description"
                         rows="4"
                         cols="80"
                         class="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full"
@@ -889,6 +897,20 @@
         // Bind the FormData object and the form element
         const FD = new FormData( form );
 
+        var object = {};
+        FD.forEach((value, key) => {
+            // Reflect.has in favor of: object.hasOwnProperty(key)
+            if(!Reflect.has(object, key)){
+                object[key] = value;
+                return;
+            }
+            if(!Array.isArray(object[key])){
+                object[key] = [object[key]];    
+            }
+            object[key].push(value);
+        });
+
+        var payload = {"title": "New Faith and Blue Event", "category": "Event", "content": object}
         // Define what happens on successful data submission
         XHR.addEventListener( "load", function(event) {
           alert( event.target.responseText );
@@ -904,7 +926,7 @@
 
         XHR.setRequestHeader( 'Authorization', 'Bearer 6btpv6tbC4KdmzdNXFAc7YTX' );
         // The data sent is what the user provided in the form
-        XHR.send( { "title": "Faith and Blue Event", "category": "Event", "content": FD } );
+        XHR.send(JSON.stringify(payload));
       }
     
       // Access the form element...
