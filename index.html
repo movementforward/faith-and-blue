@@ -923,7 +923,7 @@
 
         // Set up our request
         XHR.open( "POST", "https://core.movementforward.org/api/v1/tickets" );
-
+        XHR.setRequestHeader( 'Content-Type', 'application/json' )
         XHR.setRequestHeader( 'Authorization', 'Bearer 6btpv6tbC4KdmzdNXFAc7YTX' );
         // The data sent is what the user provided in the form
         XHR.send(JSON.stringify(payload));
