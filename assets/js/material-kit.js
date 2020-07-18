@@ -176,7 +176,7 @@ materialKit = {
     });
   }, 50),
 
-  checkScrollForTransparentNavbar: debounce(function() {
+  /*checkScrollForTransparentNavbar: debounce(function() {
     if ($(document).scrollTop() > scroll_distance) {
       if (materialKit.misc.transparent) {
         materialKit.misc.transparent = false;
@@ -189,6 +189,7 @@ materialKit = {
       }
     }
   }, 17)
+  */
 };
 
 var big_image;

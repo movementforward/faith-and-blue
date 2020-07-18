@@ -2182,13 +2182,13 @@ fieldset:disabled a.btn {
 
 .btn-info {
   color: #ffffff;
-  background-color: #00bcd4;
-  border-color: #00bcd4;
+  background-color: #608eb9;
+  border-color: #11497e; 
   box-shadow: none; }
   .btn-info:hover {
     color: #ffffff;
-    background-color: #009aae;
-    border-color: #008fa1; }
+    background-color: #608eb9;
+    border-color: #11497e; }
   .btn-info:focus, .btn-info.focus {
     box-shadow: none, 0 0 0 0.2rem rgba(0, 188, 212, 0.5); }
   .btn-info.disabled, .btn-info:disabled {
@@ -2198,8 +2198,8 @@ fieldset:disabled a.btn {
   .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
   .show > .btn-info.dropdown-toggle {
     color: #ffffff;
-    background-color: #008fa1;
-    border-color: #008394; }
+    background-color: #608eb9;
+    border-color: #11497e;  }
     .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
     .show > .btn-info.dropdown-toggle:focus {
       box-shadow: none, 0 0 0 0.2rem rgba(0, 188, 212, 0.5); }
@@ -10464,6 +10464,7 @@ textarea {
   background-position: center center;
   background-size: cover;
   margin: 0;
+  margin-top: 70px;
   padding: 0;
   border: 0;
   display: -webkit-box;
@@ -10599,8 +10600,8 @@ footer {
 .navbar {
   border: 0;
   border-radius: 3px;
-  padding: 0.625rem 0;
-  margin-bottom: 20px;
+  /*padding: 0.625rem 0;
+  margin-bottom: 20px; */
   color: #555;
   background-color: #fff !important;
   box-shadow: 0 4px 18px 0px rgba(0, 0, 0, 0.12), 0 7px 10px -5px rgba(0, 0, 0, 0.15); }
